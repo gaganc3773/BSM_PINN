@@ -36,14 +36,14 @@ Our **PINN architecture** is designed to approximate the **BSM solution** while 
 ---
 
 ### **$2.$ Forward Propagation (Neural Network Prediction)**
-- **Input:** $(S, t)$  
+- **Input:** $(S, t, r, \sigma, K)$  
 - **Network Structure:**
-  - **Input layer:** $(S, t)$  
-  - **Multiple hidden layers** with **tanh activation**  
-  - **Output layer:** $V_{\theta}(S, t)$ (predicted option price)  
+  - **Input layer:** $(S, t, r, \sigma, K)$  
+  - **Multiple hidden layers** with **ReLU activation**  
+  - **Output layer:** $V_{\theta}(S, t, r, \sigma, K)$ (predicted option price)  
 
 The neural network approximation is:  
-$V_{\theta}(S, t) = \text{NN}(S, t; \theta)$  
+$V_{\theta}(S, t, r, \sigma, K) = \text{NN}(S, t, r, \sigma, K; \theta)$  
 
 ---
 
@@ -86,7 +86,7 @@ $\mathcal{L} = \lambda_1 \mathcal{L}_{\text{PDE}} + \lambda_2 \mathcal{L}_{\text
 ---
 
 ## **Features**
-- Solves the **BSM PDE** for American options using **PINNs**  
+- Solves the **BSM PDE** for American options using **PINNs**   - `American options == European Options` when `dividend = 0` 
 - Uses **automatic differentiation** to impose PDE constraints  
 - Implements **early exercise conditions** for American options  
 - Compares **PINN predictions** with analytical solutions  
